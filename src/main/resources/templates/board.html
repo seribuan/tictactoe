@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Board</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<table>
+    <div th:if="${emptyCell eq 0 || winner}">
+        <a href="/"><button>Back</button></a>
+    </div>
+    <div th:if="${emptyCell eq 0}">
+        <div>It's a draw!</div>
+    </div>
+    <div th:if="${winner}">
+        <div th:text="${currentPlayer} + ' won!'"></div>
+    </div>
+    <div th:unless="${winner}">
+        <div th:text="${currentPlayer} + ' turn'"></div>
+    </div>
+
+    <th:block th:each="rows, rowIndex : ${board}">
+        <tr>
+            <th:block th:each="col, colIndex : ${rows}">
+                <td th:text="${col}" th:attr="data-row=${rowIndex.index},data-col=${colIndex.index}"/>
+            </th:block>
+        </tr>
+    </th:block>
+
+</table>
+
+
+<script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+
+<script th:inline="javascript">
+    var winner = [[${winner}]];
+</script>
+
+<script th:src="@{/js/script.js}"></script>
+
+</body>
+</html>

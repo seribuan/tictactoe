@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+    <form action="/board" method="post">
+        Board size: <input type="text" name="size" value="3"><br/>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
